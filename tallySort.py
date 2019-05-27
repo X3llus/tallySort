@@ -1,35 +1,29 @@
 from random import randint
+from time import time
 from sys import argv
 
-#------------------------------------------------------------------------------
-#check for item in list
-def checkList(x, unique):
-    for y in unique:
-        if x == y:
-            return False
-    return True
+'''
+
+Make a list length of highest number
+add one to the index of a number each time the number is seen
+go through the list and make a new list using the number at each index
+
+'''
 
 #------------------------------------------------------------------------------
-#function for expanding a list
-def expandList(value):
-    exList = []
-    for i, x in enumerate(value):
-        for j in range(x):
-            exList.append(i)
-    return exList
+#removes extra numbers
+def makeUnique(inList):
+    midList = [0] * 101
+    outList = list()
+    for num in inList:
+        midList[num] += 1
 
-#------------------------------------------------------------------------------
-#reduces the list to unique numbers
-def listOptimization(listOrigin):
-    listUnique = list()
-    highest = max(listOrigin)
-    counts = [0 for x in range(highest + 1)]
-
-    for x in listOrigin:
-        counts[x] += 1
-        if checkList(x, listUnique):
-            listUnique.append(x)
-    return counts
+    numA = 0
+    for x in midList:
+        for y in range(x):
+            outList.append(numA)
+        numA += 1
+    return outList
 
 #------------------------------------------------------------------------------
 #main function
@@ -40,15 +34,8 @@ def main():
         print("Building a {}-element list.".format(length))
     else:
         print("No length specified. Building a 10-element list.")
+    numList = [randint(0, 100) for i in range(length)]
 
-    # Create random array using list comprehension
-    if length >= 100:
-        array = [randint(0, round(length*0.1)) for i in range(length)]
-    else:
-        array = [randint(0, 10) for i in range(length)]
-    tally = listOptimization(array)
-    tally = expandList(tally)
-
-    print(tally)
+    print(makeUnique(numList))
 
 main()
