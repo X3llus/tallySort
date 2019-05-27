@@ -13,7 +13,17 @@ go through the list and make a new list using the number at each index
 #------------------------------------------------------------------------------
 #removes extra numbers
 def makeUnique(inList):
-    pass
+    midList = [0] * 101
+    outList = list()
+    for num in inList:
+        midList[num] += 1
+
+    numA = 0
+    for x in midList:
+        for y in range(x):
+            outList.append(numA)
+        numA += 1
+    return outList
 
 #------------------------------------------------------------------------------
 #main function
@@ -25,3 +35,7 @@ def main():
     else:
         print("No length specified. Building a 10-element list.")
     numList = [randint(0, 100) for i in range(length)]
+
+    print(makeUnique(numList))
+
+main()
