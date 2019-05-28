@@ -16,9 +16,9 @@ def makeUnique(inList):
     midList = [0] * 101
     outList = list()
     for num in inList:
-        inList.pop(0)
         midList[num] += 1
-
+        # inList.pop(0)
+    
     numA = 0
     for x in midList:
         for y in range(x):
@@ -38,5 +38,6 @@ def main():
     numList = [randint(0, 100) for i in range(length)]
 
     print(makeUnique(numList))
+    # print(numList.sort())
 
 main()
