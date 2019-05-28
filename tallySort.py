@@ -16,6 +16,7 @@ def makeUnique(inList):
     midList = [0] * 101
     outList = list()
     for num in inList:
+        inList.pop(0)
         midList[num] += 1
 
     numA = 0
